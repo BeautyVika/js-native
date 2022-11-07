@@ -93,8 +93,6 @@ export function getBanknoteList(amountOfMoney: number): Array<number> {
             if(amountOfMoney >= (banknotes[i] + sum)) addMoney(i)
         }
     }
-    for(let i = 0; i < banknotes.length; i++){
-        addMoney(i)
-    }
+    banknotes.map((el, index) => addMoney(index))
     return arrayMoney
 }
