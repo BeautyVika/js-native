@@ -1,15 +1,22 @@
 const sm = document.getElementById('small') //получаем ссылки
 const md = document.getElementById('medium')
 const bg = document.getElementById('big')
+
 const handler1 = (e) => {
     e.stopPropagation() // stop распространение события
     if(e.currentTarget.id === 'small' ){
         alert(e.currentTarget.id)
     }
 }
+// const handler1 = (e) => {
+//     if(e.target.tagName === 'BUTTON' ){
+//         alert(e.target.id)
+//     }
+// }
 
 const handler2= (e) => {
-  alert('hello')
+    e.stopPropagation()
+    alert('hello')
 }
 const handler3= (e) => {
     alert('yo')
@@ -24,3 +31,9 @@ sm.addEventListener('click', handler1) //c помощью его можно мн
 
 md.addEventListener('click', handler2)
 bg.addEventListener('click', handler3)
+
+const a = document.getElementById('a')
+a.addEventListener('click', (e) => {
+    e.preventDefault()
+    alert("Do you really want to go back?")
+})
