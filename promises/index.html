@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+
+<h1>Hello world!</h1>
+
+<!--<script src="promise.js"></script>-->
+<script src="axios.js"></script>
+<script src="api.js"></script>
+
+
+
+<script>
+    // let msPromise = api.getVacanciesCountFromMicrosoft()
+    //
+    // let gPromise = api.getVacanciesCountFromGoogle()
+    //
+    // let allPromise = Promise.all([msPromise, gPromise])
+    //
+    // allPromise.then((res) => {
+    //     api.sendStudentsCountToItKamasutra(res[0] + res[1])
+    //         .then(res => {
+    //             console.log(res.data.requestedCount);
+    //         });
+    // })
+    let msVacancies
+    api.getVacanciesCountFromMicrosoft()
+        .then((msCount) => {
+            msVacancies = msCount
+            return api.getVacanciesCountFromGoogle()
+        })
+        .then((gCount) => {
+            return api.sendStudentsCountToItKamasutra(msVacancies + gCount)
+        })
+        .then(res => {
+            console.log(res.data);
+        })
+
+    async function loadVacancies(){
+        let msCount = await api.getVacanciesCountFromMicrosoft()
+        let gCount = await api.getVacanciesCountFromGoogle()
+        let res = api.sendStudentsCountToItKamasutra(msCount + gCount)
+        console.log(res.data)
+    }
+    loadVacancies()
+
+</script>
+
+
+</body>
+</html>
