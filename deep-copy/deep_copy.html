@@ -102,15 +102,13 @@
             ]
         }
     };
-
     let man5FullCopy = {
         ...man5,
         mother: {
             ...man5.mother,
             work: {...man5.mother.work},
-            parents: man5.mother.parents.map(el => {
-                return {...el}
-            })}
+            parent: man5.mother.parents.map(el => ({...el}))
+        }
     }
 
     // 9 Object inside an object -> array -> object ->  object
